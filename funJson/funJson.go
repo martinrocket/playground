@@ -1,0 +1,6 @@
+package funJson
+
+func main() {
+
+	
+}

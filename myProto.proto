@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package playground;
+
+message CheckProto {
+
+	int32 Id = 1;
+	string Status = 2;
+	string Table = 3;
+	string Name = 4;
+	string Items = 5;
+}
+
+
+
+

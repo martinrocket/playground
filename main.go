@@ -6,6 +6,10 @@ import (
 	"fmt"
 	"os"
 	"time"
+	"github.com/golang/protobuf/proto"
+	"/playground"
+
+
 )
 
 type MyList struct {
@@ -16,6 +20,7 @@ type MyList struct {
 	Items  map[int]string `json:"items"`
 }
 
+
 func main() {
 	fmt.Println("Hello Gophers!")
 	myTime := time.Now()
@@ -23,9 +28,8 @@ func main() {
 	fmt.Println(myTime.Format("01_02_15:04:05.000"))
 	fmt.Println(myTime.Format("01_02_2006"))
 	writeJson()
+	writeProto()
 	fmt.Print("Enter text: ")
-	//var text []byte
-	//fmt.Scanln(&text)
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
@@ -64,3 +68,22 @@ func writeJson() {
 
 	fmt.Println(string(jCk))
 }
+
+func writeProto() {
+	test := new(playground.CheckProto)
+	test.ID = proto.Int32(25)
+	test.Status =  proto.String("open")
+	test.Table = proto.String("35")
+	test.Name =  proto.String("Jana Miller")
+	test.Items = proto.String("Potatoes")
+
+
+	data, err :=proto.Marshal(test)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(data)
+}
+
+
