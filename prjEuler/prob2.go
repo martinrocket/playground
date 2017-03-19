@@ -18,6 +18,23 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 find the sum of the even-valued terms.
  */
 
+const p1 int = 4000000
+
 func main() {
-	fmt.Println("sugar")
+	i := 0
+	j := 1
+	result := 0
+	evenResults := 0
+	for result < p1 {
+		result = i + j
+		i = j
+		j = result
+		fmt.Println(result)
+		if result % 2 == 0 {
+			evenResults += result
+		}
+
+	}
+
+	fmt.Println("Even results summed = ", evenResults)
 }

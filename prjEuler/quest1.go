@@ -24,4 +24,11 @@ func main() {
 		}
 	}
 	fmt.Println(ctr)
+
+	for i := 0; i <= 100; i++ {
+		x := 100 - i
+		if x > 0 {
+			fmt.Println(x)
+		}
+	}
 }
