@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-
 /*
 
 Even Fibonacci numbers
@@ -16,7 +15,7 @@ the first 10 terms will be:
 
 By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 find the sum of the even-valued terms.
- */
+*/
 
 const p1 int = 4000000
 
@@ -30,7 +29,7 @@ func main() {
 		i = j
 		j = result
 		fmt.Println(result)
-		if result % 2 == 0 {
+		if result%2 == 0 {
 			evenResults += result
 		}
 

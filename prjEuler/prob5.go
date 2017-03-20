@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-
 /*
 
 Smallest multiple
@@ -13,7 +12,7 @@ Problem 5
 
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
- */
+*/
 
 var x int
 var y int = 0
@@ -29,11 +28,7 @@ func main() {
 		}
 	}
 
-
 }
-
-
-
 
 func getNext() int {
 	y += 20
@@ -43,7 +38,7 @@ func getNext() int {
 
 func isItIt(x int) bool {
 	for i := 1; i < 20; i++ {
-		if x%i  != 0 {
+		if x%i != 0 {
 			return false
 		}
 	}
