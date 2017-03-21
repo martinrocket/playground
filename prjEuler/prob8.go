@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"io/ioutil"
+	//"io/ioutil"
+	"bufio"
 	"strconv"
 )
 
@@ -37,69 +38,62 @@ The four adjacent digits in the 1000-digit number that have the greatest product
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
 */
-const length int = 13
+
+const length int = 13 // This constant allows us to adjust the adjacent digits to read - 4 or 13
 
 func main() {
-	fmt.Println("sugar")
 
+	// I created a file called data.dat to store the 1000 digit number.  First we open the file.
 	file, err := os.Open("data.dat")
 	if err != nil {
-		fmt.Println("error opening file")
+		fmt.Println("error opening file:", err)
 	}
 
-	defer file.Close()
+	defer file.Close() // Close the file when this function is finished
 
-	myData, err := ioutil.ReadAll(file)
-	if err != nil {
-		fmt.Println("error reading file into memory")
+	// Scanner is used to ScanLines so that the "/n" is not imported
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var myData string
+	for scanner.Scan() {
+		myData = myData + scanner.Text()
 	}
 
-	//fmt.Printf("%s %T \n", myData, myData)
-	fmt.Println(len(myData))
+	// Convert the string into myDataInt slice of []int64 through this for statement
 	myDataInt := make([]int64, len(myData))
-
-	for i := 0; i < len(myData); i++ {
-		myDataInt [i], err = strconv.ParseInt(string(myData[i]), 10, 64)
+	for i := range myData {
+		myDataInt[i], err = strconv.ParseInt(string(myData[i]), 10, 64)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
-	//fmt.Println(myDataInt)
-	var count int64 = 0
-	var calc int64 = 1
-	var calcArray [length]int64
-	var countArray [length]int64
-	for i :=0; i < len(myDataInt)-length; i++ {
+
+	var count int64 = 0                          //use count variable to track the highest product.
+	var calc int64 = 1                           // use calc while calculating the product (this is multiplication so start with 1.
+	var calcArray [length]int64                  // as we calculate the array with the highest product hold the current array here.
+	var countArray [length]int64                 // as we calcualate the array with the highest product hold the highest here.
+	for i := 0; i < len(myDataInt)-length; i++ { // the for loop to build arrays to compare
 		for j := 0; j < length; j++ {
-			calc = calc * myDataInt[i + j]
-			calcArray[j] = myDataInt[i + j]
+			calc = calc * myDataInt[i+j] // calculate the array
+			calcArray[j] = myDataInt[i+j]
 		}
-		//fmt.Println(calc)
-		//fmt.Println(calcArray)
-		if calc > 0 {
-			fmt.Printf("%v %v ", calc, calcArray)
-			var m int64 = 1
+
+		if calc > 0 { // if the calculated array is > 0 (there we no 0's in the multiplication, do this...
+
+			var m int64 = 1 // calculate the array
 			for i := range calcArray {
 				m = m * calcArray[i]
 
 			}
-			fmt.Printf("%v \n", m)
+
 		}
-		if calc > count {
+		if calc > count { // keep track of the highest product and array
 			count = calc
 			countArray = calcArray
 		}
 		calc = 1
 	}
-	//fmt.Println(count)
-	//fmt.Print(countArray)
-	var n int64 = 1
-	for i := 0; i < len(countArray); i++ {
-		n = n * countArray[i]
-	}
-	//fmt.Println(n)
-	fmt.Println()
-
-
+	fmt.Println(count)      // print the highest product
+	fmt.Println(countArray) // print the coresponding array
 
 }
