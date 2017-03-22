@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 /*
@@ -143,20 +143,20 @@ func createGrid() [][]int {
 	return grid
 }
 
-func right(grid [][]int) ([4]int, int){
+func right(grid [][]int) ([4]int, int) {
 	count := 0
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
 	for i := range grid {
-		for j := 0; j < len(grid[i]) - 4; j++{
+		for j := 0; j < len(grid[i])-4; j++ {
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
 			for k := 0; k < 4; k++ {
-				calc = calc * grid[i][j+ k]
-				calcArray[k] = grid[i][j+ k]
+				calc = calc * grid[i][j+k]
+				calcArray[k] = grid[i][j+k]
 				if calc > count {
 					count = calc
 					countArray = calcArray
@@ -168,20 +168,20 @@ func right(grid [][]int) ([4]int, int){
 	return countArray, count
 }
 
-func left(grid [][]int) ([4]int, int){
+func left(grid [][]int) ([4]int, int) {
 	count := 0
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
 	for i := range grid {
-		for j := len(grid[i]) - 1; j > 4; j--{
+		for j := len(grid[i]) - 1; j > 4; j-- {
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
 			for k := 0; k < 4; k++ {
 				calc = calc * grid[i][j-k]
-				calcArray[k] = grid[i][j- k]
+				calcArray[k] = grid[i][j-k]
 				if calc > count {
 					count = calc
 					countArray = calcArray
@@ -193,20 +193,20 @@ func left(grid [][]int) ([4]int, int){
 	return countArray, count
 }
 
-func down(grid [][]int) ([4]int, int){
+func down(grid [][]int) ([4]int, int) {
 	count := 0
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
-	for i := 0; i < len(grid) - 4 ; i ++ {
-		for j := 0; j < len(grid[i]); j++{
+	for i := 0; i < len(grid)-4; i++ {
+		for j := 0; j < len(grid[i]); j++ {
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
 			for k := 0; k < 4; k++ {
-				calc = calc * grid[i + k ][j]
-				calcArray[k] = grid[i + k][j]
+				calc = calc * grid[i+k][j]
+				calcArray[k] = grid[i+k][j]
 				if calc > count {
 					count = calc
 					countArray = calcArray
@@ -218,21 +218,20 @@ func down(grid [][]int) ([4]int, int){
 	return countArray, count
 }
 
-
-func acrossR(grid [][]int) ([4]int, int){
+func acrossR(grid [][]int) ([4]int, int) {
 	count := 0
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
-	for i := 0; i < len(grid) - 4; i++ {
-		for j := 0; j < len(grid[i]) - 4; j++{
+	for i := 0; i < len(grid)-4; i++ {
+		for j := 0; j < len(grid[i])-4; j++ {
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
 			for k := 0; k < 4; k++ {
-				calc = calc * grid[i + k][j + k]
-				calcArray[k] = grid[i + k][j + k]
+				calc = calc * grid[i+k][j+k]
+				calcArray[k] = grid[i+k][j+k]
 				if calc > count {
 					count = calc
 					countArray = calcArray
@@ -244,20 +243,20 @@ func acrossR(grid [][]int) ([4]int, int){
 	return countArray, count
 }
 
-func acrossL(grid [][]int) ([4]int, int){
+func acrossL(grid [][]int) ([4]int, int) {
 	count := 0
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
-	for i := 0; i < len(grid) - 4; i++ {
-		for j := 4; j < len(grid[i]); j++{
+	for i := 0; i < len(grid)-4; i++ {
+		for j := 4; j < len(grid[i]); j++ {
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
 			for k := 0; k < 4; k++ {
-				calc = calc * grid[i + k][j - k]
-				calcArray[k] = grid[i + k][j - k]
+				calc = calc * grid[i+k][j-k]
+				calcArray[k] = grid[i+k][j-k]
 				if calc > count {
 					count = calc
 					countArray = calcArray
