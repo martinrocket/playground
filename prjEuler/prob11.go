@@ -248,14 +248,14 @@ func acrossL(grid [][]int) ([4]int, int) {
 	var countArray [4]int
 	calc := 1
 	var calcArray [4]int
-	for i := 0; i < len(grid)-4; i++ {
-		for j := 4; j < len(grid[i]); j++ {
+	for i := 0; i < len(grid)-4; i++ {					// i := o - i = len(grid) = 4 or 0 - i++
+		for j := 4; j < len(grid[i]); j++ {				// j := 4 - len(grid[i] = 4 or 0 - j++ or j--
 			calc = 1
 			for r := range calcArray {
 				calcArray[r] = 0
 			}
-			for k := 0; k < 4; k++ {
-				calc = calc * grid[i+k][j-k]
+			for k := 0; k < 4; k++ {				// k:=0 - k<4 - k++
+				calc = calc * grid[i+k][j-k]			// i+k j-k - i+k j+k - i+k j - i j-k -
 				calcArray[k] = grid[i+k][j-k]
 				if calc > count {
 					count = calc
