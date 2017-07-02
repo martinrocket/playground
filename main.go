@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 	"time"
-	"github.com/golang/protobuf/proto"
-	"/playground"
+	pb "github.com/golang/protobuf/proto"
+	
 
 
 )
@@ -70,7 +70,7 @@ func writeJson() {
 }
 
 func writeProto() {
-	test := new(playground.CheckProto)
+	test := new(pb.CheckProto)
 	test.ID = proto.Int32(25)
 	test.Status =  proto.String("open")
 	test.Table = proto.String("35")
