@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"html/template"
 	"log"
 	"net/http"
 )
@@ -15,12 +15,13 @@ func main() {
 }
 
 func loadPage1() (content []byte) {
-	templ, err := ioutil.ReadFile("template.html")
-	//str1 := "here is your string"
+
+	t := template.New("homePage")
+	t, err := t.ParseFiles("template.html")
 	if err != nil {
-		log.Println("error")
+		log.Println("Error parsing home p")
 	}
-	return templ
+
 }
 
 func handler1(w http.ResponseWriter, r *http.Request) {
