@@ -1,9 +1,11 @@
 package main
 
-import ("fmt")
+import (
+	"fmt"
+)
 
 func main() {
-for i := 1; i <= 100; i++ {
+	for i := 1; i <= 100; i++ {
 		if i%3 == 0 && i%5 == 0 {
 			fmt.Println("fizz buzz")
 		} else if i%3 == 0 {
@@ -13,4 +15,5 @@ for i := 1; i <= 100; i++ {
 		} else {
 			fmt.Println(i)
 		}
+	}
 }
